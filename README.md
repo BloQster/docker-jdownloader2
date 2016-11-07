@@ -1,1 +1,1 @@
-# docker-jdownloader2-server
+# docker-jdownloader2
