@@ -1,5 +1,5 @@
-MAINTAINER michael.bortlik@gmail.com
 FROM ubuntu:latest
+MAINTAINER michael.bortlik@gmail.com
 RUN apt-get update && \
 	apt-get install -y openjdk-8-jre-headless nano expect sed && \
 	rm -r /var/lib/apt/lists/* && \
