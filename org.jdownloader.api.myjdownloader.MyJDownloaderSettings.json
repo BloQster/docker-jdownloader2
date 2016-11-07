@@ -1,0 +1,15 @@
+{
+  "uniquedeviceidsaltv2" : "",
+  "autoconnectenabledv2" : true,
+  "debugenabled" : false,
+  "uniquedeviceid" : null,
+  "lastlocalport" : 42476,
+  "connectip" : "api.jdownloader.org",
+  "latesterror" : "NONE",
+  "password" : "MY_JDOWNLOADER_PASSWORD",
+  "clientconnectport" : 80,
+  "directconnectmode" : "LAN",
+  "devicename" : "JDownloader@jdownloader",
+  "uniquedeviceidv2" : "",
+  "email" : "MY_JDOWNLOADER_EMAIL"
+}
