@@ -1,9 +1,6 @@
+MAINTAINER michael.bortlik@gmail.com
 FROM ubuntu:latest
-
-ENV MY_JDOWNLOADER_MAIL=NOT_SET \
-	MY_JDOWNLOADER_PASSWORD=NOT_SET
-
-	RUN apt-get update && \
+RUN apt-get update && \
 	apt-get install -y openjdk-8-jre-headless nano expect sed && \
 	rm -r /var/lib/apt/lists/* && \
 	mkdir /opt/jdownloader && \
