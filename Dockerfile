@@ -12,5 +12,6 @@ RUN chown -R jdownloader:jdownloader /opt/jdownloader && \
 USER jdownloader
 WORKDIR /opt/jdownloader
 RUN java -jar JDownloader.jar
+VOLUME /opt/jdownloader/cfg
 ENTRYPOINT /opt/jdownloader/start.sh
 
