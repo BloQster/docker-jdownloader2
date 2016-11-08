@@ -1,17 +1,23 @@
-FROM ubuntu:latest
+FROM ubuntu:xenial
 MAINTAINER michael.bortlik@gmail.com
-RUN apt-get update && \
-	apt-get install -y openjdk-8-jre-headless nano expect sed && \
-	rm -r /var/lib/apt/lists/* && \
-	mkdir /opt/jdownloader && \
-	useradd -M -d /opt/jdownloader -s /bin/bash jdownloader
-ADD ./JDownloader.jar ./start.sh /opt/jdownloader/
-ADD ./org.jdownloader.api.myjdownloader.MyJDownloaderSettings.json /opt/jdownloader/cfg/org.jdownloader.api.myjdownloader.MyJDownloaderSettings.json
-RUN chown -R jdownloader:jdownloader /opt/jdownloader && \
-	chmod +x /opt/jdownloader/start.sh
-USER jdownloader
-WORKDIR /opt/jdownloader
-RUN java -jar JDownloader.jar
-VOLUME /opt/jdownloader/cfg
-ENTRYPOINT /opt/jdownloader/start.sh
 
+ENV JDOWNLOADER2_INSTALLDIR="/opt/jdownloader2" \
+    JDOWNLOADER2_CONFIGGILE="/opt/jdownloader2/cfg/org.jdownloader.api.myjdownloader.MyJDownloaderSettings.json"
+
+RUN useradd -M -d ${JDOWNLOADER2_INSTALLDIR} jdownloader2
+
+RUN apt-get update \
+ && apt-get install -y openjdk-8-jre-headless \
+ && rm -r /var/lib/apt/lists/*
+
+RUN mkdir -p ${JDOWNLOADER2_INSTALLDIR} ${JDOWNLOADER2_INSTALLDIR}/cfg
+ADD ./JDownloader.jar ${JDOWNLOADER2_INSTALLDIR}
+
+RUN java -jar $JDOWNLOADER2_INSTALLDIR/JDownloader.jar -norestart
+RUN chown -R jdownloader2:jdownloader2 ${JDOWNLOADER2_INSTALLDIR}
+
+VOLUME ${JDOWNLOADER2_INSTALLDIR}/cfg
+
+ADD /jdownloader2_entrypoint.sh /
+RUN chmod +x /jdownloader2_entrypoint.sh
+ENTRYPOINT ["/jdownloader2_entrypoint.sh"]
