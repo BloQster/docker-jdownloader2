@@ -11,6 +11,11 @@ if [ ! -f "$JDOWNLOADER2_CONFIGGILE" ]; then
         echo "MyJDownloader password is not set."
         exit 1
     fi
+    
+    if [ -z "$MYJDOWNLOADER_DEVICENAME" ]; then
+        echo "MyJDownloader password is not set."
+        exit 1
+    fi
 
     cat <<- EOF > $JDOWNLOADER2_CONFIGGILE
 {
@@ -24,7 +29,7 @@ if [ ! -f "$JDOWNLOADER2_CONFIGGILE" ]; then
   "password" : "${MYJDOWNLOADER_PASSWORD}",
   "clientconnectport" : 80,
   "directconnectmode" : "LAN",
-  "devicename" : "JDownloader@jdownloader",
+  "devicename" : "${MYJDOWNLOADER_DEVICENAME}",
   "uniquedeviceidv2" : "",
   "email" : "${MYJDOWNLOADER_EMAIL}"
 }
