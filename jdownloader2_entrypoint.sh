@@ -37,4 +37,4 @@ EOF
      
 fi
 
-exec start-stop-daemon --start --chuid jdownloader2:jdownloader2 --exec /usr/bin/java -- -jar "$JDOWNLOADER2_INSTALLDIR"/JDownloader.jar
+exec start-stop-daemon --start --chuid jdownloader2:jdownloader2 --exec /usr/bin/java -- -Djava.awt.headless=true -jar "$JDOWNLOADER2_INSTALLDIR"/JDownloader.jar
