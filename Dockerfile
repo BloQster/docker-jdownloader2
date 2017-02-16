@@ -18,7 +18,7 @@ RUN apt-get update \
 RUN mkdir -p ${JDOWNLOADER2_INSTALLDIR} ${JDOWNLOADER2_INSTALLDIR}/cfg \
  && wget -O ${JDOWNLOADER2_INSTALLDIR}/JDownloader.jar http://installer.jdownloader.org/JDownloader.jar
 
-RUN java -jar $JDOWNLOADER2_INSTALLDIR/JDownloader.jar -norestart \
+RUN java -Djava.awt.headless=true -jar $JDOWNLOADER2_INSTALLDIR/JDownloader.jar -norestart \
  && chown -R jdownloader2:jdownloader2 ${JDOWNLOADER2_INSTALLDIR}
 
 VOLUME ${JDOWNLOADER2_INSTALLDIR}/cfg
