@@ -15,13 +15,13 @@ RUN apt-get update \
  && apt-get install oracle-java8-installer -y \
  && rm -r /var/lib/apt/lists/*
 
-RUN mkdir -p ${JDOWNLOADER2_INSTALLDIR} ${JDOWNLOADER2_INSTALLDIR}/cfg \
+RUN mkdir -p ${JDOWNLOADER2_INSTALLDIR} \
  && wget -O ${JDOWNLOADER2_INSTALLDIR}/JDownloader.jar http://installer.jdownloader.org/JDownloader.jar
 
 RUN java -Djava.awt.headless=true -jar $JDOWNLOADER2_INSTALLDIR/JDownloader.jar -norestart \
  && chown -R jdownloader2:jdownloader2 ${JDOWNLOADER2_INSTALLDIR}
 
-VOLUME ${JDOWNLOADER2_INSTALLDIR}/cfg
+VOLUME ${JDOWNLOADER2_INSTALLDIR}
 
 ADD /jdownloader2_entrypoint.sh /
 RUN chmod +x /jdownloader2_entrypoint.sh
