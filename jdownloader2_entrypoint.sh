@@ -40,6 +40,7 @@ fi
 # Just in case JD fucks up again and deletes its own executable...
 if [ ! -f "$JDOWNLOADER2_INSTALLDIR"/JDownloader.jar ]; then
   wget -O "$JDOWNLOADER2_INSTALLDIR"/JDownloader.jar http://installer.jdownloader.org/JDownloader.jar
+  chown jdownloader2:jdownloader2 "$JDOWNLOADER2_INSTALLDIR"/JDownloader.jar
 fi
 
 exec start-stop-daemon --start --chuid jdownloader2:jdownloader2 --exec /usr/bin/java -- -Djava.awt.headless=true -jar "$JDOWNLOADER2_INSTALLDIR"/JDownloader.jar -norestart
